@@ -1,5 +1,5 @@
 const ShortUrlPopup = ({ shortCode, onClose }) => {
-  const shortUrl = `http://localhost:8080/${shortCode}`;
+  const shortUrl = `${import.meta.env.VITE_API_URL}/${shortCode}`;
 
   const handleCopy = async () => {
     try {

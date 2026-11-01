@@ -44,7 +44,7 @@ const Signup = () => {
               return;
             }
             axios
-              .post("http://localhost:8080/api/auth/signup", formData)
+              .post( `${import.meta.env.VITE_API_URL}/api/auth/signup`, formData)
               .then((response) => {
                 console.log("SUCCESS:", response.data);
                 setSuccess(response.data.msg);

@@ -39,7 +39,7 @@ const Signin = () => {
                return;
              }
              axios
-               .post("http://localhost:8080/api/auth/signIn", formData)
+               .post( `${import.meta.env.VITE_API_URL}/api/auth/signIn`, formData)
                .then((response) => {
                  console.log("SUCCESS:", response.data);
 

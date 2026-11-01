@@ -15,7 +15,7 @@ const MyUrls = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await axios.get("http://localhost:8080/api/urls", {
+        const response = await axios.get( `${import.meta.env.VITE_API_URL}/api/urls`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,7 +47,7 @@ const MyUrls = () => {
    );
 
   const handleCopy = async (shortCode) => {
-    const shortUrl = `http://localhost:8080/${shortCode}`;
+    const shortUrl =  `${import.meta.env.VITE_API_URL}/${shortCode}`;
 
     try {
       await navigator.clipboard.writeText(shortUrl);
@@ -60,11 +60,14 @@ const MyUrls = () => {
   const handleDelete = async (shortCode) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8080/api/urls/${shortCode}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/urls/${shortCode}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       setUrls((previousUrls) =>
         previousUrls.filter((url) => url.shortCode !== shortCode),
       );
@@ -78,7 +81,7 @@ const MyUrls = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:8080/api/urls/${editUrl.shortCode}`,
+        `${import.meta.env.VITE_API_URL}/api/urls/${editUrl.shortCode}`,
         {
           url: editValue,
         },
